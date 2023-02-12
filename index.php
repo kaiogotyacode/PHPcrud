@@ -31,6 +31,9 @@
 
     <div class="container">
         <?php
+        
+        include("config.php");
+
         switch (@$_REQUEST["page"]) {
             case "cadastrar":
                 /* Código: Formulário Cadastrar */
