@@ -47,6 +47,9 @@
                 /* Código: CRUD Response */
                 include("metodos.php");
                 break;
+            case "cadastrarCarro":
+                include("telaCadastrarCarro.php");
+            break;
             default:
                 /* Código: Página Inicial */
                 print "<p class='display-4'> Welcome, dear. </p>";

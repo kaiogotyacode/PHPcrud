@@ -65,8 +65,15 @@
 
                         // AÇÕES
                         print "<td class='text-center'>";
-                            print "<button class='btn btn-primary' style='margin-right: 1vw;' onclick='window.location.href=\"?page=atualizar&id=".$row->idPessoa."\" '> Editar </button>";
-                            print "<button class='btn btn-danger' style='margin-left: 1vw;' onclick=\"alert('complexo')\"> Excluir </button>";
+                            print "<button class='btn btn-primary' style='margin-right: 1vw;' onclick='window.location.href=\"?page=atualizar&id=".$row->idPessoa."\" '> Detalhes </button>";
+
+                            print "<button class='btn btn-danger' style='margin-left: 1vw;' onclick=\"
+                                if(confirm('Você realmente deseja excluir o usuário ".$row->nome." ? ')){
+                                    window.location.href='?page=metodos&acao=excluir&id=".$row->idPessoa."';
+                                }else{
+                                    false;
+                                };
+                            \"> Excluir </button>";
                         print "</td>";
 
                     print "</tr>";
@@ -98,7 +105,38 @@
             }
                     
             print "<script> window.location.href='?page=metodos&acao=listar'; </script>";
-        break;        
+        break;
+        case "cadastrarCarro":
+            $modelo = $_POST["modelo"];
+            $placa= $_POST["placa"];
+
+            $id = $_REQUEST["id"];
+
+            $sql = "INSERT INTO Carro (modelo,placa,proprietario) VALUES ('{$modelo}', '{$placa}',{$id});";
+            $resp = $conexao->query($sql);
+
+            if($resp){
+                print "<script> alert('Carro cadastrado com sucesso!') </script>";
+            }else{
+                print "<script> alert('Falha ao cadastrar o carro!') </script>";
+            }
+            print "<script> window.location.href='?page=atualizar&id=".$id."'</script>";
+
+        break;                    
+        case "excluir":
+            $sql = "DELETE FROM PESSOA WHERE idPessoa  = ".$_REQUEST["id"];
+            $resp = $conexao->query($sql);                        
+            if($resp){
+                print "<script>
+                 alert('Usuário deletado com sucesso!') 
+                 </script>";                
+                }else{
+                    print "<script>
+                    alert('Falha ao deletar usuário!') 
+                    </script>";                                    
+                }
+                print "<script> window.location.href='?page=metodos&acao=listar'; </script>";
+        break;
         default:
         break;
     }
