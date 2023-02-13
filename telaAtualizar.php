@@ -74,11 +74,11 @@ $row = $resp->fetch_object();
     
                             // AÇÕES
                             print "<td class='text-center'>";
-                                print "<button class='btn btn-primary' style='margin-right: 1vw;' onclick='window.location.href=\"?page=atualizar&id=".$row->idPessoa."\" '> Detalhes </button>";
+                                print "<button type='button' class='btn btn-primary' style='margin-right: 1vw;' onclick='window.location.href=\"?page=atualizarCarro&id=".$row->idPessoa."&idCarro=".$row->idCarro."\" '> Editar </button>";
     
-                                print "<button class='btn btn-danger' style='margin-left: 1vw;' onclick=\"
+                                print "<button type='button' class='btn btn-danger' style='margin-left: 1vw;' onclick=\"
                                     if(confirm('Você realmente deseja excluir o modelo ".$row->modelo." ? ')){
-                                        window.location.href='?page=metodos&acao=excluir&id=".$row->idPessoa."';  
+                                        window.location.href='?page=metodos&acao=excluirCarro&idCarro=".$row->idCarro."&id=".$row->idPessoa."';  
                                     }else{
                                         false;
                                     };

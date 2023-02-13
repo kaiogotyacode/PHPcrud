@@ -122,8 +122,40 @@
             }
             print "<script> window.location.href='?page=atualizar&id=".$id."'</script>";
 
-        break;                    
+        break;     
+        case "atualizarCarro":
+            $modelo = $_POST["modelo"];
+            $placa= $_POST["placa"];
+            
+            $id = $_REQUEST["id"];
+            $idCarro = $_REQUEST["idCarro"];
+
+            $sql = "UPDATE Carro SET modelo = '{$modelo}', placa = '{$placa}' WHERE idCarro = $idCarro";
+            $resp = $conexao->query($sql);
+
+            if($resp){
+                print "<script> alert('Veículo atualizado com sucesso!') </script>";
+            }else{
+                print "<script> alert('Falha ao atualizar veículo!') </script>";                
+            }
+            print "<script> window.location.href='?page=atualizar&id=".$id."' </script>";                
+
+        break;               
         case "excluir":
+
+            $sql = "SELECT * FROM Carro WHERE proprietario = ".$_REQUEST["id"]." ";
+            print "<script> alert('".$sql."') </script> ";
+            
+            $resp = $conexao->query($sql);
+            
+            if($resp->num_rows > 0){
+                print "<script> alert('bateu no if') </script> ";                
+                while($row  = $resp->fetch_object()){
+                    $sql2 = "DELETE FROM Carro WHERE idCarro = ".$row->idCarro."";
+                    $resp2 = $conexao->query($sql2);                
+                }
+            }
+
             $sql = "DELETE FROM PESSOA WHERE idPessoa  = ".$_REQUEST["id"];
             $resp = $conexao->query($sql);                        
             if($resp){
@@ -136,6 +168,22 @@
                     </script>";                                    
                 }
                 print "<script> window.location.href='?page=metodos&acao=listar'; </script>";
+        break;
+        case "excluirCarro":
+            $id = $_REQUEST["id"];
+
+            $sql = "DELETE FROM Carro WHERE idCarro  = ".$_REQUEST["idCarro"];
+            $resp = $conexao->query($sql);                        
+            if($resp){
+                print "<script>
+                 alert('Veículo deletado com sucesso!') 
+                 </script>";                
+                }else{
+                    print "<script>
+                    alert('Falha ao deletar veículo!') 
+                    </script>";                                    
+                }
+                print "<script> window.location.href='?page=atualizar&id=".$id."'; </script>";
         break;
         default:
         break;

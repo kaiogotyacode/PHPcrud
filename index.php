@@ -50,6 +50,9 @@
             case "cadastrarCarro":
                 include("telaCadastrarCarro.php");
             break;
+            case "atualizarCarro":
+                include("telaAtualizarCarro.php");
+            break;
             default:
                 /* Código: Página Inicial */
                 print "<p class='display-4'> Welcome, dear. </p>";
