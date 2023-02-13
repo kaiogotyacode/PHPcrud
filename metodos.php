@@ -144,12 +144,10 @@
         case "excluir":
 
             $sql = "SELECT * FROM Carro WHERE proprietario = ".$_REQUEST["id"]." ";
-            print "<script> alert('".$sql."') </script> ";
             
             $resp = $conexao->query($sql);
             
             if($resp->num_rows > 0){
-                print "<script> alert('bateu no if') </script> ";                
                 while($row  = $resp->fetch_object()){
                     $sql2 = "DELETE FROM Carro WHERE idCarro = ".$row->idCarro."";
                     $resp2 = $conexao->query($sql2);                
