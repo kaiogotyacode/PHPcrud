@@ -1,4 +1,4 @@
-# PHPcrud
+# PHPcrud - Luciene LP2
 Implementing a PHP crud to apply in my proficiency exam on college.
 
 MYSQL SCRIPT 
@@ -19,3 +19,11 @@ placa varchar(255),
 proprietario int,
 foreign key (proprietario) references pessoa(idPessoa)
 );
+
+ATTEMPT:
+
+Configuração local XAMPP/WAMP 
+HOST: localhost
+USER: root
+PASSWORD: (vazia)
+BASE: proficiency
